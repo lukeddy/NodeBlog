@@ -1,10 +1,10 @@
 NodeBlog
 ========
 
-Introduce
+1.Introduce
 ---------
 A Blog in Nodejs
 
-Environment
+2.Environment
 ---------
 Nodejs + express + moogonse
