@@ -1,33 +1,9 @@
-
-var crypto = require('crypto');
-var mongoose = require('mongoose')
-,db = mongoose.connect('mongodb://localhost/mydb');
-
-var Article = new mongoose.Schema({
-	title: String,
-	url: String,
-	content: String,
-	tag: String,
-	datetime: Date,
-	id: String
-});
-
-var Info = new mongoose.Schema({
-	total: String
-});
-
-var articleModel = mongoose.model('Article', Article);
-function getCount(){
-	var articleModel = mongoose.model('Article', Article);
-	articleModel.count({}, function(err, num){
-		if (err)
-			console.log("DB ERROR");
-		else
-				
-			return  num;
-			//console.log("here" + num);
-	});
-}
+var config = require('../config/config');
+var crypto = config.crypto
+   ,db = config.db
+   ,username = config.username
+   ,password = config.password
+   ,articleModel = config.articleModel;
 
 exports.auth = function(req, res, next){
 	if (!req.session.auth)
@@ -35,11 +11,11 @@ exports.auth = function(req, res, next){
 	else
 		next();
 };
-//document.write("The current month is " + monthNames[d.getMonth()]);
 
 exports.index = function(req, res){
-	//var articleModel = mongoose.model('Article', Article);
-	articleModel.find({}).sort('datetime', 1).execFind(function(err, doc){
+
+	articleModel.find({}).sort('datetime', 1).execFind(function(err, doc)
+	{
 		if (err)
 			res.render('error', {title: 'Opps!', message: err});
 		else
@@ -51,28 +27,12 @@ exports.about = function(req, res){
 	res.render('about', { title: 'Leo.Miao'})
 };
 */
-/*
-exports.god = function(req, res){
-	console.log("here");
-	switch (req.params.page){
-		case "write":
-			res.render('write');
-			break;
-		default:
-		case "article":
-			var articleModel = mongoose.model('Article', Article);
-			articleModel.find({}, function(err, doc){
-				res.render('article', {posts: doc});
-			});
-			break;
-	}
-};*/
+
 exports.write = function(req, res){
 	res.render('write', {edit: '0', post: ""});
 };
 
 exports.article = function(req, res){
-	//var articleModel = mongoose.model('Article', Article);
 	articleModel.find({}).sort('datetime', 1).execFind(function(err, doc){
 		if (err)
 			res.render('error', {title: 'Opps!', message: err});
@@ -83,13 +43,11 @@ exports.article = function(req, res){
 
 exports.new = function(req, res){
 	var d = new Date();
-	//var articleModel = mongoose.model('Article', Article);
 	var article = new articleModel();
 	article.title = req.body.title;
 	article.url = req.body.url;
 	article.content = req.body.myValue;
 	article.tag = req.body.tag;
-	//article.datetime = d.toString();
 	article.datetime = d;
 	article.id = crypto.createHash('md5').update(article.url + article.datetime).digest("hex");
 	article.save(function(err){
@@ -99,32 +57,9 @@ exports.new = function(req, res){
 			res.redirect('/god');
 	});
 };
-/*
+
 exports.update = function(req, res){
 	if (req.params.id){
-		var article = new articleModel();
-		article.title = req.body.title;
-		article.url = req.body.url;
-		article.content = req.body.myValue;
-		article.tag = req.body.tag;
-		article.tag = req.params.id;
-		article.update({id: req.params.id}, {
-			title: req.body.title
-			,url: req.body.url
-			,content = req.body.myValue
-			,article.tag = req.body.tag
-		}, {}, function(){
-			if (err)
-				res.render('error', {title: 'Opps!', message: err});
-			else
-				console.log("");
-		});
-	}
-};
-*/
-exports.update = function(req, res){
-	if (req.params.id){
-		//var article = new articleModel();
 		articleModel.findOne({id: req.params.id}, function(err, doc){
 			if (!doc)
 				res.render('error', {title: '404 Page Not Found', message: "The content you're looking for doesn't exisit."});
@@ -148,7 +83,6 @@ exports.update = function(req, res){
 exports.delete = function(req, res){
 	if ( req.params.type == 'a')
 	{
-		//var articleModel = mongoose.model('Article', Article);
 		if ( req.params.id != "" ){
 			articleModel.remove({id: req.params.id}, function(err){
 				if (err) 
