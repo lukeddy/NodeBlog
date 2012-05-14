@@ -1,0 +1,56 @@
+<!DCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>Core Land</title>
+	<link rel="stylesheet" type="text/css" media="screen"  href="/stylesheets/style.css" />
+</head>
+<body>
+	<div id="header">
+			<h1>Core Land</h1> 
+			<p>/*Administrate You<a href="/"><span style="font-weight: normal;color: #FF8C00;padding-left: 5px;">Blog</span></a>, or <a href="/logout" style="font-weight: normal;"> Logout</a>*/</p>
+	</div>
+	<div class="sep20"></div>
+	<div id="main">
+		<div class="container">
+			<div class="content fl">
+				<div class="post">
+					<div class="col-left Nav">
+						<a href="/god/article" class="selected">Article</a>
+						<a href="/god/write">Write</a>
+					</div>
+					<div class="col-mid">
+					<%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September",     "October", "November", "December" ];
+						for (var item  = posts.length - 1; item != -1  ; item -- ) { 
+							//var d = new Date(posts[item].datetime);
+ 	                     	var d = posts[item].datetime;
+							var datetime = monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+					%>
+						<div class="cell" >
+							<div class="sep10"></div>
+							<h4><a href="/<%=posts[item].url%>"><%=posts[item].title %></a></h1>
+							<div class="sep10"></div>
+							<div class="meta-data">
+								<ul>
+									<li><a href="/delete/a/<%=posts[item].id%>">Delete</a></li>
+									<li><a href="/edit/a/<%=posts[item].id%>">Edit</a></li>
+									<li style="color: #AAA;"><%= datetime %></li>
+								<ul>
+							</div>
+							<div class="sep"></div>
+						</div>
+					<% } %>
+					</div>
+				</div>
+			</div>
+			<div class="sidebar fr">
+				<h4>About</h4>
+				<p><a href="#">Leo.Miao</a> is an Developer and Student major in Computer Science.</p>
+				<p>You can contact me from following method</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</body>
+</html>
+

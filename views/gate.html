@@ -1,0 +1,55 @@
+<!DCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>Who are You?</title>
+	<link rel="stylesheet" type="text/css" media="screen"  href="/stylesheets/style.css" />
+</head>
+<body>
+	<div id="header">
+			<h1><a href="/">Miao's World</a></h1> 
+			<p>/*Blog For <a href="http://twitter.com/miaoever/" ><span style="font-weight: normal;color: #FF8C00;" >Leo.Miao</span></a>*/</p>
+	</div>
+	<div class="sep20"></div>
+	<div id="main">
+		<div class="container">
+			<div class="content fl">
+
+				<div class="post">
+					<div class="col-left">
+					<p class="meta"></p>
+					</div>
+					<div class="col-mid">
+						<div class="cell">
+							<h1>Who Are You?<h1>
+							<div class="sep20"></div>
+								<% if (message) {%>
+								<div class="login-msg">
+									<%=message%>	
+								</div>
+								<%}%>
+							<div class="login">
+								<form method="POST" action="check">
+									<div><span class="label">Username</span><input class="textarea" type="text" name="username"/></div>
+									<div><span class="label">Password</span><input class="textarea" type="password" name="password"/></div>
+									<input type="submit" value="Enter" style="margin-left: 191px; margin-top:10px;"/>
+								</form>
+							</div>
+							<p class="meta"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="sidebar fr">
+				<h4>About</h4>
+				<p><a href="#">Leo.Miao</a> is an Developer and Student major in Computer Science.</p>
+				<p>You can contact me from following method</p>
+			</div>
+			<div class="clear"></div>
+			<div class="footer">@2012 Copyright miaoever, Powered by Node.js + MongoDB</div>
+		</div>
+	</div>
+</body>
+</html>
+

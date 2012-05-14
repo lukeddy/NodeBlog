@@ -1,0 +1,109 @@
+<!DCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>Write - Core Land</title>
+	<script type="text/javascript" src="/javascripts/ueditor/editor_config.js"></script>
+	<script type="text/javascript" src="/javascripts/ueditor/editor_all.js"></script>
+	<link rel="stylesheet" href="/javascripts/ueditor/themes/default/ueditor.css"/>
+	<link rel="stylesheet" type="text/css" media="screen"  href="/stylesheets/style.css" />
+</head>
+<body>
+	<div id="header">
+			<h1>Core Land</h1> 
+			<p>/*Administrate You<a href="/"><span style="color: #FF8C00;padding-left: 5px;">Blog</span></a>, or <a href="/logout" style="font-weight: normal;"> Logout</a>*/</p>
+	</div>
+	<div class="sep20"></div>
+	<div id="main">
+		<div class="container">
+			<div class="content fl">
+				<div class="post">
+					<div class="col-left Nav">
+						<a href="/god/article">Article</a>
+						<a href="/god/write" class="selected">Write</a>
+					</div>
+					<div class="col-mid">
+					<%  var title = ""
+							,url = ""
+							,content = ""
+							,tag = ""
+							,action="/new";
+
+						if ( edit == '1')
+						{
+							title = post.title;
+							url = post.url;
+							content = post.content;
+							tag = post.tag;
+							action = "/update/" + post.id;
+						}
+					%>
+						<form id="myForm" action="<%=action%>" method="post">
+							<table border="0" cellspacing="0" cellpadding="5">
+								<tbody>
+									<tr>
+										<td width="50" align="left">
+											<span class="label">Title</span>
+										</td>
+										<td width="700" align="left">
+											<input name="title" type="text" style="width:700px" value="<%=title%>"/>
+										</td>
+									</tr>
+									<tr>
+										<td width="50" align="left">
+											<span class="label">Url</span>
+										</td>
+										<td width="700" align="left">
+											<input name="url" type="text" style="width:700px" value="<%=url%>"/>
+										</td>
+									</tr>
+									<tr>
+										<td width="50" align="left">
+										</td>
+										<td width="700" align="left">
+								    		<%
+												var initCotent = ""
+												if ( edit == '1') {
+													initContent = content;
+												} 
+											%>
+											<script type="text/plain" id="myEditor" style="width:700px"><%-content%></script>
+											<script type="text/javascript">
+												var editor = new baidu.editor.ui.Editor({
+													textarea:'myValue'
+											    });
+												editor.render("myEditor");
+											</script>
+										</td>
+									</tr>
+									<tr>
+										<td width="50" align="left">
+											<span class="label">Tag</span>
+										</td>	
+										<td width="700" align="left">
+											<input name="tag" type="text" style="width:700px" value="<%=tag%>">
+										</td>
+									</tr>
+									<tr>
+										<td width="50" align="left">
+										</td>
+										<td width="400" align="left">
+											<input value="Submit" type="submit" />
+										</td>
+						
+									</tr>
+			
+								</tbody>
+							</table>
+						</form>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<!DCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title><%= post.title%></title>
+	<link rel="stylesheet" type="text/css" media="screen"  href="/stylesheets/style.css" />
+</head>
+<body>
+	<div id="header">
+			<h1><a href="/">Miao's World</a></h1> 
+			<p>/*Blog For <a href="http://twitter.com/miaoever/" ><span style="font-weight: normal;color: #FF8C00;" >Leo.Miao</span></a>*/</p>
+	</div>
+	<div class="sep20"></div>
+	<div id="main">
+		<div class="container">
+			<div class="content fl">
+-			<%  var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+				//var d = new Date(post.datetime);
+				var d = post.datetime;
+				var datetime = monthNames[d.getMonth()] + " " + d.getDay() + ", " + d.getFullYear();
+			%>
+				<div class="post">
+					<div class="col-left">
+					<p class="meta"><%=datetime %></p>
+					</div>
+					<div class="col-mid">
+						<div class="cell">
+							<h1><%=post.title %></h1>
+							<div class="sep20"></div>
+							<div class="box">
+								<%- post.content %>
+							</div>
+							<p class="meta"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="sidebar fr">
+				<h4>About</h4>
+				<p><a href="#">Leo.Miao</a> is an Developer and Student major in Computer Science.</p>
+				<p>You can contact me from following method</p>
+			</div>
+			<div class="clear"></div>
+			<div class="footer">@2012 Copyright miaoever, Powered by Node.js + MongoDB</div>
+		</div>
+	</div>
+</body>
+</html>
+
