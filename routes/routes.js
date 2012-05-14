@@ -114,8 +114,6 @@ exports.gate = function(req, res){
 };
 
 exports.check = function(req, res){
-	var username = "admin";
-	var password = "admin";
 	if (req.body.username == username && req.body.password == password){
 		req.session.username = username;
 		req.session.auth = true;
