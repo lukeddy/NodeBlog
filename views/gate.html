@@ -30,6 +30,7 @@
 								<%}%>
 							<div class="login">
 								<form method="POST" action="check">
+									<input type="hidden" name="csrf" value="<%- csrf %>" />
 									<div><span class="label">Username</span><input class="textarea" type="text" name="username"/></div>
 									<div><span class="label">Password</span><input class="textarea" type="password" name="password"/></div>
 									<input type="submit" value="Enter" style="margin-left: 191px; margin-top:10px;"/>

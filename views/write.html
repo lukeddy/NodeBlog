@@ -39,6 +39,7 @@
 						}
 					%>
 						<form id="myForm" action="<%=action%>" method="post">
+							<input type="hidden" name="csrf" value="<%- csrf %>" />
 							<table border="0" cellspacing="0" cellpadding="5">
 								<tbody>
 									<tr>
