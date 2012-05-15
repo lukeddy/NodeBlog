@@ -5,7 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes/routes')
-  , ejs = require("ejs");
+  , ejs = require("ejs")
+  , csrf = require("./lib/csrf");
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -19,6 +20,7 @@ app.configure(function(){
   	app.use(express.bodyParser());
   	app.use(express.methodOverride());
   	app.use(app.router);
+	app.use(csrf.check());
   	app.use(express.static(__dirname + '/public'));
   	app.register('html', ejs);
   	app.set("view options", { layout: false});
@@ -32,8 +34,11 @@ app.configure('production', function(){
   	app.use(express.errorHandler());
 });
 
-// Routes
+app.dynamicHelpers({
+	csrf: csrf.token
+});
 
+// Routes
 app.get('/', routes.index);
 //app.get('/about',routes.about);
 app.post('/new', routes.new);
